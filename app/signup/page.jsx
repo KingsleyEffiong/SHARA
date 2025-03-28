@@ -1,10 +1,32 @@
-import Form from '@/components/Form'
-import React from 'react'
+"use client"
+import Form from '@/components/Form';
+import React, { useState, useEffect } from 'react';
 
 function SignUp() {
-    return (
-        <Form />
-    )
+    const [loading, setLoading] = useState(false);
+
+    const signUpUser = async (formData) => {
+        setLoading(true);
+
+        try {
+            const response = await fetch('/api/v1/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+
+            console.log('User signed up successfully', data);
+        } catch (error) {
+            console.error('Signup error:', error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return <Form signUpUser={signUpUser} loading={loading} />;
 }
 
-export default SignUp
+export default SignUp;
