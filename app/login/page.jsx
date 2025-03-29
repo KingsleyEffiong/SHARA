@@ -1,9 +1,13 @@
 "use client"
 import Form from '@/components/Form';
+import { useRouter } from 'next/navigation';
+
 import React, { useState } from 'react';
 
 function Login() {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
     const loginUser = async (formData) => {
         setLoading(true)
         try {
@@ -23,6 +27,7 @@ function Login() {
             if (!response.ok) throw new Error(data.message);
 
             console.log('User logged in successfully', data);
+            router.push('/')
         } catch (error) {
             console.error('Login error:', error.message);
         }

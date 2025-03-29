@@ -109,6 +109,7 @@ function Form({ signUpUser, loginUser, loading }) {
                     type="submit"
                     disabled={loading}
                     className="w-full bg-teal-500 hover:bg-teal-600 transition-all text-white font-semibold py-4 rounded-xl cursor-pointer"
+
                 >
                     {loading ? 'Loading.......' : isSignUp ? "Sign up" : "Login"}
                 </motion.button>

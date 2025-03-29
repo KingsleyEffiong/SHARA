@@ -1,9 +1,11 @@
 "use client"
 import Form from '@/components/Form';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 function SignUp() {
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const signUpUser = async (formData) => {
         setLoading(true);
@@ -19,6 +21,7 @@ function SignUp() {
             if (!response.ok) throw new Error(data.message);
 
             console.log('User signed up successfully', data);
+            router.push('/login')
         } catch (error) {
             console.error('Signup error:', error.message);
         } finally {
