@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import SendFile from "@/components/SendFile"; // Import SendFile component
 
 export default function Dashboard() {
   const router = useRouter();
@@ -30,11 +31,16 @@ export default function Dashboard() {
     };
 
     fetchUser();
-  }, [router]); // ✅ Include router in dependencies
+  }, [router]);
 
   return (
-    <div>
-      <h1>Welcome, {user?.name || "Guest"}!</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">
+        Welcome, {user?.name || "Guest"}!
+      </h1>
+
+      {/* ✅ SendFile Component */}
+      <SendFile />
     </div>
   );
 }

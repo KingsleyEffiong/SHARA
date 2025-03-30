@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <body className="fixed top-0 left-0 w-full h-full bg-[#091919]">
         {/* 3D Background */}
         <div className="absolute inset-0 pointer-events-none">
-          <ThreeDBackground />
+          {/* <ThreeDBackground /> */}
         </div>
 
         {/* Page Content */}
