@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import SendFile from "@/components/SendFile"; // Import SendFile component
+import SendFile from "./send-document/page";
 
 export default function Dashboard() {
   const router = useRouter();
