@@ -63,10 +63,10 @@ export default function ReceiveFile() {
   };
 
   return (
-    <div className="flex justify-center items-center fixed inset-0 pointer-events-none">
+    <div className="flex justify-center h-screen items-center fixed top-0 left-0 inset-0 pointer-events-none">
       <div className="pointer-events-auto">
-        <div className="flex flex-row w-full gap-5 bg-white align-center shadow-lg shadow-gray-800 rounded-lg p-5">
-          <div className="p-4 max-w-md mx-auto bg-white shadow-md rounded-lg">
+        <div className="flex flex-col md:flex-row w-full h-screen mt-44 md:mt-0 overflow-auto md:h-auto  bg-white  shadow-lg shadow-gray-800 rounded-lg">
+          <div className="p-4 w-full h-fit bg-white rounded-lg">
             <h2 className="text-lg font-bold mb-3">Download Your File</h2>
 
             {qrCode && (
@@ -104,7 +104,11 @@ export default function ReceiveFile() {
                 />
                 <button
                   onClick={handleDecrypt}
-                  className="w-full mt-2 bg-[#002e2e] text-white p-2 rounded hover:bg-[#045b5b] cursor-pointer"
+                  className={`w-full mt-2 bg-[#002e2e] text-white p-2 rounded ${
+                    timeLeft <= 0
+                      ? "cursor-not-allowed opacity-50"
+                      : "hover:bg-[#045b5b] cursor-pointer"
+                  }`}
                   disabled={timeLeft <= 0}
                 >
                   🔑 Decrypt & Download
@@ -114,24 +118,31 @@ export default function ReceiveFile() {
 
             {error && <p className="text-red-500 mt-3">{error}</p>}
           </div>
-        </div>
-        <div className="p-4 w-full bg-[#002e2e] shadow-md">
-          <h1 className="text-white text-3xl">Simple, private file sharing</h1>
-          <p className="text-white">
-            This application is a secure file upload and encryption system built
-            with Next.js, Firebase, and MongoDB. It allows users to upload
-            files, which are then encrypted using AES-256-CBC encryption before
-            being stored securely on the server. The system ensures that
-            sensitive data remains protected, and only authorized users can
-            download and decrypt files. The application also features a robust
-            database integration, storing metadata such as file names, sizes,
-            and upload timestamps. Additionally, users receive a secure download
-            link, enabling controlled file access. With real-time database
-            connectivity and a seamless user experience, this application is
-            ideal for scenarios requiring confidential file handling, such as
-            document management, secure file sharing, and compliance-driven data
-            storage.
-          </p>
+          <div className="p-6 w-full min-h-screen md:min-h-auto md:overflow-hidden bg-[#002e2e] shadow-md flex flex-col justify-center items-center">
+            <div className="max-w-3xl text-center">
+              <h1 className="text-white text-3xl">
+                Simple, private file sharing
+              </h1>
+              <p className="text-white mt-4 leading-relaxed">
+                This application is a secure file upload and encryption system
+                built with Next.js, Firebase, and MongoDB. It allows users to
+                upload files, which are then encrypted using AES-256-CBC
+                encryption before being stored securely on the server. The
+                system ensures that sensitive data remains protected, and only
+                authorized users can download and decrypt files.
+                <br />
+                <br />
+                The application also features a robust database integration,
+                storing metadata such as file names, sizes, and upload
+                timestamps. Additionally, users receive a secure download link,
+                enabling controlled file access. With real-time database
+                connectivity and a seamless user experience, this application is
+                ideal for scenarios requiring confidential file handling, such
+                as document management, secure file sharing, and
+                compliance-driven data storage.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

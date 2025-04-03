@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 
 function SignUp() {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const router = useRouter();
 
     const signUpUser = async (formData) => {
@@ -18,18 +19,18 @@ function SignUp() {
             });
 
             const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
+            if (!response.ok) throw new Error(data.error);
 
-            console.log('User signed up successfully', data);
             router.push('/login')
         } catch (error) {
             console.error('Signup error:', error.message);
+            setError(error.message)
         } finally {
             setLoading(false);
         }
     };
 
-    return <Form signUpUser={signUpUser} loading={loading} />;
+    return <Form signUpUser={signUpUser} loading={loading} error={error} />;
 }
 
 export default SignUp;

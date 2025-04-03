@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Input from "@/UI/Input";
 import { useRouter, usePathname } from "next/navigation";
 
-function Form({ signUpUser, loginUser, loading }) {
+function Form({ signUpUser, loginUser, loading, error }) {
     const router = useRouter();
     const pathname = usePathname();
     const isSignUp = pathname === "/signup";
@@ -113,6 +113,7 @@ function Form({ signUpUser, loginUser, loading }) {
                 >
                     {loading ? 'Loading.......' : isSignUp ? "Sign up" : "Login"}
                 </motion.button>
+                {error && <p className="text-red-600">{error}</p>}
 
                 <p className="text-gray-300 text-sm text-center">
                     {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}

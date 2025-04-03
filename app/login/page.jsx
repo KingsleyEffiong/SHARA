@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 
 function Login() {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const router = useRouter();
 
     const loginUser = async (formData) => {
@@ -24,19 +25,18 @@ function Login() {
 
             const data = await response.json(); // Await response properly
 
-            if (!response.ok) throw new Error(data.message);
-
-            console.log('User logged in successfully', data);
-            router.push('/')
+            if (!response.ok) throw new Error(data.error);
+            router.push('/send-document')
         } catch (error) {
             console.error('Login error:', error.message);
+            setError(error.message)
         }
         finally {
             setLoading(false)
         }
     };
 
-    return <Form loginUser={loginUser} loading={loading} />;
+    return <Form loginUser={loginUser} loading={loading} error={error} />;
 }
 
 export default Login;
