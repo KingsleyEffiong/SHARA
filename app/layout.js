@@ -1,6 +1,7 @@
 import "../styles/global.css";
 import ThreeDBackground from "@/components/Background";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Share File",
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Page Content */}
-        {children}
+        <Suspense>{children}</Suspense>
       </body>
     </html>
   );
