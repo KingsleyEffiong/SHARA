@@ -121,7 +121,7 @@ function Form({ signUpUser, loginUser, loading, error }) {
                         className="text-teal-400 hover:underline cursor-pointer"
                         onClick={() => router.push(isSignUp ? "/login" : "/signup", { scroll: false })}
                     >
-                        {loading ? 'Loading' : isSignUp ? "Login" : "Sign up"}
+                        {isSignUp ? "Login" : "Sign up"}
                     </span>
                 </p>
             </motion.form>
