@@ -28,6 +28,7 @@ export default function UploadDocument() {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (data.success && data.fileName && data.expiresIn) {
         setFileLink(
