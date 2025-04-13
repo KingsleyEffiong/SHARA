@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Input from "@/UI/Input";
 import { useRouter, usePathname } from "next/navigation";
 
-function Form({ signUpUser, loginUser, loading, error }) {
+function Form({ signUpUser, loginUser, loading, error, setError }) {
     const router = useRouter();
     const pathname = usePathname();
     const isSignUp = pathname === "/signup";
@@ -20,16 +20,19 @@ function Form({ signUpUser, loginUser, loading, error }) {
 
         if (isSignUp) {
             if (!formData.email.trim() || !formData.password.trim() || !formData.name.trim() || !formData.confirmPassword.trim()) {
-                alert('Input all fields');
+                setError('Input all fields')
                 return;
             }
 
-            if (formData.password !== formData.confirmPassword) alert('Passwords doesnt match')
+            if (formData.password !== formData.confirmPassword) {
+                setError('Passwords doesnt match')
+                return;
+            }
 
             signUpUser(formData);
         } else {
             if (!formData.email.trim() || !formData.password.trim()) {
-                alert('Input all fields');
+                setError('Input all fields')
                 return;
             }
 

@@ -36,7 +36,7 @@ function Login() {
         }
     };
 
-    return <Form loginUser={loginUser} loading={loading} error={error} />;
+    return <Form loginUser={loginUser} loading={loading} error={error} setError={setError} />;
 }
 
 export default Login;

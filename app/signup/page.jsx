@@ -30,7 +30,7 @@ function SignUp() {
         }
     };
 
-    return <Form signUpUser={signUpUser} loading={loading} error={error} />;
+    return <Form signUpUser={signUpUser} loading={loading} error={error} setError={setError} />;
 }
 
 export default SignUp;
